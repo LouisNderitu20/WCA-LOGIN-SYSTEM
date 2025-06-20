@@ -1,12 +1,10 @@
 import { useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-export default function Register() {
-  const [form, setForm] = useState({
-    name: '',
-    username: '',
-    email: '',
-    password: ''
-  });
+export default function Login() {
+  const router = useRouter();
+  const [form, setForm] = useState({ username: '', email: '', password: '' });
   const [message, setMessage] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,29 +14,27 @@ export default function Register() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const res = await fetch('/api/register', {
+    const res = await fetch('/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(form)
+      body: JSON.stringify(form),
     });
 
     const data = await res.json();
-    setMessage(res.ok ? ` ${data.message}` : ` ${data.error}`);
+
+    if (res.ok) {
+      setMessage('Login successful!');
+    } else {
+      setMessage(data.error);
+    }
   };
 
   return (
     <div className="auth-wrapper">
       <div className="auth-container">
         <img src="/icipe-logo.png" alt="ICIPE Logo" className="logo" />
-        <h1>Welcome to WCA ICIPE. Register Here</h1>
+        <h1>Welcome back to WCA ICIPE. Login</h1>
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Full Name"
-            onChange={handleChange}
-            required
-          />
           <input
             type="text"
             name="username"
@@ -60,7 +56,14 @@ export default function Register() {
             onChange={handleChange}
             required
           />
-          <button type="submit" className="button">Register</button>
+
+          <div style={{ textAlign: 'right', marginBottom: '10px' }}>
+            <Link href="/forgot-password" style={{ fontSize: '14px', color: '#1a73e8', textDecoration: 'none' }}>
+              Forgot password?
+            </Link>
+          </div>
+
+          <button type="submit" className="button">Login</button>
           {message && <p className="status-message">{message}</p>}
         </form>
       </div>
