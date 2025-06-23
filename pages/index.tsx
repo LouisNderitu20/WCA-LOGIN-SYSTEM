@@ -61,7 +61,11 @@ export default function Register() {
             required
           />
           <button type="submit" className="button">Register</button>
-          {message && <p className="status-message">{message}</p>}
+          {message && (
+              <p className="status-message" style={{ marginBottom: '10px', color: 'green' }}>
+              {message}
+              </p>
+              )}
         </form>
       </div>
     </div>

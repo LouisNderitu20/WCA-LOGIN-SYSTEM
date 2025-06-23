@@ -1,11 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { signIn, useSession } from 'next-auth/react';
 
 export default function Login() {
   const router = useRouter();
+  const { data: session } = useSession();
   const [form, setForm] = useState({ username: '', email: '', password: '' });
   const [message, setMessage] = useState('');
+
+  // I WILL CHANGE LATER AFTER I GET THE DASHBOARD PAGE
+  //useEffect(() => {
+   // if (session) {
+     // router.push('https://wca-ew.icipe.org/');
+   //}
+  //}, [session, router]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -34,6 +43,7 @@ export default function Login() {
       <div className="auth-container">
         <img src="/icipe-logo.png" alt="ICIPE Logo" className="logo" />
         <h1>Welcome back to WCA ICIPE. Login</h1>
+
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -58,14 +68,45 @@ export default function Login() {
           />
 
           <div style={{ textAlign: 'right', marginBottom: '10px' }}>
-            <Link href="/forgot-password" style={{ fontSize: '14px', color: '#1a73e8', textDecoration: 'none' }}>
+            <Link
+              href="/forgot-password"
+              style={{ fontSize: '14px', color: '#1a73e8', textDecoration: 'none' }}
+            >
               Forgot password?
             </Link>
           </div>
 
           <button type="submit" className="button">Login</button>
-          {message && <p className="status-message">{message}</p>}
         </form>
+        <div style={{ marginTop: '15px' }} />
+
+        <button
+          type="button"
+          onClick={() => signIn('google')}
+          className="button"
+          style={{
+            backgroundColor: '#4285F4',
+            color: 'white',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px',
+          }}
+        >
+          <img
+            src="https://www.svgrepo.com/show/475656/google-color.svg"
+            alt="Google icon"
+            width="20"
+            height="20"
+            style={{ background: 'white', borderRadius: '50%' }}
+          />
+          Sign in with Google
+        </button>
+        {message && (
+        <p className="status-message" style={{ marginBottom: '10px', color: 'green' }}>
+          {message}
+        </p>
+          )}
       </div>
     </div>
   );
