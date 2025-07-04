@@ -21,11 +21,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-
     const user = await prisma.user.findFirst({
       where: {
-        username,
-        email,
+        OR: [
+          { username },
+          { email },
+        ],
       },
     });
 
@@ -42,6 +43,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (!isPasswordCorrect) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
+
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { lastLogin: new Date() },
+    });
 
     const token = jwt.sign(
       { id: user.id, username: user.username, email: user.email },

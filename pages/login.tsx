@@ -9,7 +9,7 @@ export default function Login() {
   const [form, setForm] = useState({ username: '', email: '', password: '' });
   const [message, setMessage] = useState('');
 
-  // I WILL CHANGE LATER AFTER I GET THE DASHBOARD PAGE
+  // I WILL CHANGE LATER AFTER I GET THE DASHBOARD PAGE FROM GITHUB.
   //useEffect(() => {
    // if (session) {
      // router.push('https://wca-ew.icipe.org/');
@@ -96,8 +96,8 @@ export default function Login() {
           <img
             src="https://www.svgrepo.com/show/475656/google-color.svg"
             alt="Google icon"
-            width="20"
-            height="20"
+            width="30"
+            height="30"
             style={{ background: 'white', borderRadius: '50%' }}
           />
           Sign in with Google

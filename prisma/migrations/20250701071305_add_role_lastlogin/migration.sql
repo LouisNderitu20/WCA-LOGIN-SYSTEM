@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE `user` ADD COLUMN `lastLogin` DATETIME(3) NULL,
+    ADD COLUMN `role` VARCHAR(191) NOT NULL DEFAULT 'user';
