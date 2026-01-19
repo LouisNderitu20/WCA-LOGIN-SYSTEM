@@ -42,6 +42,7 @@ export default function Login() {
     <div className="auth-wrapper">
       <div className="auth-container">
         <img src="/icipe-logo.png" alt="ICIPE Logo" className="logo" />
+        <title>WCA ICIPE | Login Here.</title>
         <h1>Welcome back to WCA ICIPE. Login</h1>
 
         <form onSubmit={handleSubmit}>

@@ -44,7 +44,7 @@ export default function SetPasswordPage() {
   return (
     <>
       <Head>
-        <title>Set Password | WCA</title>
+        <title>WCA ICIPE | Set Paasword.</title>
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
           rel="stylesheet"

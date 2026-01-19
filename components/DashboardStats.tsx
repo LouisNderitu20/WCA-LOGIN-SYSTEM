@@ -28,7 +28,7 @@ const DashboardStats: React.FC<StatCardProps> = ({ users }) => {
       color: "warning",
     },
     {
-      label: "Admins",
+      label: "Admin",
       count: users.filter((u) => u.role === "admin").length,
       icon: "bi-shield-lock-fill",
       color: "danger",

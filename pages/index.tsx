@@ -30,6 +30,7 @@ export default function Register() {
     <div className="auth-wrapper">
       <div className="auth-container">
         <img src="/icipe-logo.png" alt="ICIPE Logo" className="logo" />
+        <title>WCA ICIPE | Register Here.</title>
         <h1>Welcome to WCA ICIPE. Register Here</h1>
         <form onSubmit={handleSubmit}>
           <input

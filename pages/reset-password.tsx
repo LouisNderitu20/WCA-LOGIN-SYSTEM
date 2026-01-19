@@ -36,6 +36,7 @@ export default function ResetPassword() {
     <div className="auth-wrapper">
       <div className="auth-container">
         <img src="/icipe-logo.png" alt="ICIPE Logo" className="logo" />
+        <title>WCA ICIPE | Reset Paasword.</title>
         <h1>Reset Your Password</h1>
         <form onSubmit={handleSubmit}>
           <input
